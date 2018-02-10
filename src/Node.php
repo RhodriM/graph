@@ -16,6 +16,7 @@ namespace Graph;
 class Node
 {
     public $id;
+    public $name = '';
     protected $edgesOut;
     protected $edgesIn;
     

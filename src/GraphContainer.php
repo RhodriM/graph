@@ -57,6 +57,8 @@ class GraphContainer
         $from->addEdgeOut($edge);
         $to->addEdgeIn($edge);
         
+        $this->edges[] = $edge;
+        
         if ($this->maintainAdjacencyMatrix) {
             $this->adjacencyMatrix[$from->id][$to->id] = $weight;
         }
@@ -76,5 +78,15 @@ class GraphContainer
     public function getNodes()
     {
         return $this->nodes;
+    }
+    
+    public function getEdges()
+    {
+        return $this->edges;
+    }
+    
+    public function isDirected()
+    {
+        return intval($this->directed);
     }
 }
