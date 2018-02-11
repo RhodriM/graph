@@ -168,10 +168,10 @@ class GraphContainer
     }
     
     /**
-     * @return int
+     * @return bool
      */
     public function isDirected()
     {
-        return intval($this->directed);
+        return $this->directed;
     }
 }

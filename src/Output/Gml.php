@@ -44,7 +44,7 @@ class Gml implements FileOutput
             $filename,
             "graph\n"
             . "[".
-            "\n  directed " . $graphCon->isDirected()
+            "\n  directed " . intval($graphCon->isDirected())
         );
         
         foreach($graphCon->getNodes() as $node) {
