@@ -26,17 +26,43 @@
 namespace Graph;
 
 /**
- * Description of Edge
+ * (Very) simple representation of Edge. Can be extended, but recommended Edges
+ * added through GraphContainer.
  *
  * @author rhodrimorris
  */
 class Edge
 {
+    /**
+     * Note: Expects integer id only, not link to actual Node
+     * @var int id of Node link is from
+     */
     public $from;
+    
+    /**
+     * Note: Expects integer id only, not link to actual Node
+     * @var int id of Node link is to
+     */
     public $to;
+    
+    /**
+     *
+     * @var int|float
+     */
     public $weight;
+    
+    /**
+     * Optional label
+     * @var String
+     */
     public $label = '';
     
+    /**
+     * 
+     * @param int $f id of node from
+     * @param int $t id of node to
+     * @param int|float $w weight
+     */
     public function __construct($f, $t, $w)
     {
         $this->from = $f;

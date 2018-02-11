@@ -26,12 +26,19 @@
 namespace Graph\Output;
 
 /**
- * Description of Gml
+ * Write GraphContainer to gml file.
+ * 
+ * https://en.wikipedia.org/wiki/Graph_Modelling_Language
  *
  * @author rhodrimorris
  */
 class Gml implements FileOutput
 {
+    /**
+     * 
+     * @param String $filename
+     * @param \Graph\GraphContainer $graphCon
+     */
     public function writeToFile($filename, \Graph\GraphContainer $graphCon) {
         file_put_contents(
             $filename,

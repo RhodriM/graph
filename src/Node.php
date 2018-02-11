@@ -26,33 +26,79 @@
 namespace Graph;
 
 /**
- * Description of Node
+ * Simple representation of node class. Intended to be extended by, or contained
+ * within, any object you wish to represent as a graph node.
  *
  * @author rhodrimorris
  */
 class Node
 {
+    /**
+     * Unique identifier. Usually set by GraphContainer.
+     * @var int
+     */
     public $id;
+    
+    /**
+     * Optional label - may be used by external software (ie Gephi) that graph
+     * is exported to.
+     * @var String
+     */
     public $name = '';
+    
+    /**
+     * Array of out edges. In undirected graph each edge out will have a
+     * corresponding entry in edgesIn. Recommended to only add edges through
+     * GraphContainer for this reason.
+     * @var array
+     */
     protected $edgesOut;
+    
+    /**
+     * Array of in edges. In undirected graph each edge in will have a
+     * corresponding entry in edgesOut. Recommended to only add edges through
+     * GraphContainer for this reason.
+     * @var array
+     */
     protected $edgesIn;
     
+    /**
+     * Initialises edges arrays and sets optional name if passed.
+     * 
+     * @param String $name
+     */
     public function __construct($name = '') {
         $this->edgesIn = array();
         $this->edgesOut = array();
         $this->name = $name;
     }
     
+    /**
+     * Adds edge to edgesOut - note pass by reference
+     * @param \Graph\Edge $e
+     */
     public function addEdgeOut(Edge &$e)
     {
         $this->edgesOut[] = $e;
     }
     
+    /**
+     * Adds edge to edgesIn - note pass by reference
+     * @param \Graph\Edge $e
+     */
     public function addEdgeIn(Edge &$e)
     { 
         $this->edgesIn[] = $e;
     }
     
+    /**
+     * Compares an edge to those existing in edgesOut to see if already exists.
+     * (Note weight sensitive - an existing edge between the same notes with a
+     * different weight will cause this to return false).
+     * 
+     * @param \Graph\Edge $e
+     * @return boolean
+     */
     public function edgeOutExists(Edge $e)
     {
         foreach ($this->edgesOut as $existingEdge)
@@ -65,6 +111,14 @@ class Node
         return false;
     }
     
+    /**
+     * Compares an edge to those existing in edgesIn to see if already exists.
+     * (Note weight sensitive - an existing edge between the same notes with a
+     * different weight will cause this to return false).
+     * 
+     * @param \Graph\Edge $e
+     * @return boolean
+     */
     public function edgeInExists(Edge $e)
     {
         if (in_array($e, $this->edgesIn)) {
@@ -74,11 +128,19 @@ class Node
         return false;
     }
     
+    /**
+     * 
+     * @return array
+     */
     public function getNeighboursOut()
     {
         return $this->edgesOut;
     }
     
+    /**
+     * 
+     * @return array
+     */
     public function getNeighboursIn()
     {
         return $this->edgesIn;

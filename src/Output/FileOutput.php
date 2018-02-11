@@ -23,9 +23,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 namespace Graph\Output;
+
 /**
- * Description of FileOutput
+ * Interface for output classes which write graph to file.
  *
  * @author rhodrimorris
  */

@@ -26,19 +26,54 @@
 namespace Graph;
 
 /**
- * Description of GraphContainer
+ * GraphContainer manages storing, adding, removing nodes and edges, maintaining
+ * consistency, adjacency matrices etc.
  *
  * @author rhodrimorris
  */
 class GraphContainer
 {
+    /**
+     * @var array
+     */
     protected $nodes;
+    
+    /**
+     * @var array
+     */
     protected $edges;
+    
+    /**
+     * Whether to maintain an adjacency matrix as nodes/edges are added.
+     * @var bool
+     */
     protected $maintainAdjacencyMatrix;
+    
+    /**
+     * 2D array serving as adjacency matrix
+     * @var array
+     */
     protected $adjacencyMatrix;
+    
+    /**
+     * @var bool
+     */
     protected $directed;
+    
+    /**
+     * If graph is not weighted, all edge weights are 1.
+     * @var bool
+     */
     protected $weighted;
     
+    /**
+     * Configures graphContainer instance and creates adjacency matrix if
+     * required
+     * 
+     * @param bool $maintainAdjacencyMatrix
+     * @param bool $directed
+     * @param bool $weighted
+     */
     public function __construct(
         $maintainAdjacencyMatrix = false,
         $directed = false,
@@ -53,6 +88,12 @@ class GraphContainer
         }
     }
     
+    /**
+     * Adds a node, assigning it an incremental ID. Also updates adjacency
+     * matrix if required.
+     * 
+     * @param \Graph\Node $n
+     */
     public function addNode(Node $n)
     {
         $n->id = count($this->nodes);
@@ -67,9 +108,20 @@ class GraphContainer
         }
     }
     
-    public function addEdge(Node &$from, Node &$to, $weight = 1, $label = 0)
+    /**
+     * Creates an edge from node to node. Also updates adjacency matrix if
+     * required. If graph is undirected, also creates corresponding reverse
+     * edge.
+     * 
+     * @param \Graph\Node $from
+     * @param \Graph\Node $to
+     * @param int|float $weight
+     * @param String $label
+     */
+    public function addEdge(Node &$from, Node &$to, $weight = 1, $label = '')
     {
         $edge = new Edge($from->id, $to->id, $weight);
+        
         if ($label != '') {
             $edge->label = $label;
         }
@@ -86,25 +138,38 @@ class GraphContainer
         $reversedEdge = new Edge($to->id, $from->id, $weight, $label);
         
         if (!$this->directed && !$to->edgeOutExists($reversedEdge)) {
-            $this->addEdge($to, $from, $weight);
+            // add corresponding reverse edge for unweighted graphs
+            $this->addEdge($to, $from, $weight, $label);
         }
     }
     
+    /**
+     * @return array
+     */
     public function getAdjacencyMatrix()
     {
         return $this->adjacencyMatrix;
     }
     
+    /**
+     * @return array
+     */
     public function getNodes()
     {
         return $this->nodes;
     }
     
+    /**
+     * @return array
+     */
     public function getEdges()
     {
         return $this->edges;
     }
     
+    /**
+     * @return int
+     */
     public function isDirected()
     {
         return intval($this->directed);
