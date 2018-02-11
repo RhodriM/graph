@@ -90,6 +90,9 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
             ),
             $graphCon->getAdjacencyMatrix()
         );
+        
+        $this->assertEquals(1, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
     }
     
     public function testAddEdgeUnDirected()
@@ -118,6 +121,9 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
             ),
             $graphCon->getAdjacencyMatrix()
         );
+        
+        $this->assertEquals(2, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
     }
     
     public function testAddEdgeDirectedWeighted()
@@ -146,6 +152,9 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
             ),
             $graphCon->getAdjacencyMatrix()
         );
+        
+        $this->assertEquals(1, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
     }
     
     public function testAddEdgeUnDirectedWeighted()
@@ -174,5 +183,35 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
             ),
             $graphCon->getAdjacencyMatrix()
         );
+        
+        $this->assertEquals(2, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
+    }
+    
+    public function testIsDirected()
+    {
+        $graphCon = new \Graph\GraphContainer();
+        // use assertNotTrue as assertFalse does a strict comparison on type
+        $this->assertNotTrue($graphCon->isDirected());
+        $this->assertEquals(0, $graphCon->isDirected());
+        $this->assertEquals(false, $graphCon->isDirected());
+        
+        $graphCon = new \Graph\GraphContainer(true);
+        // use assertNotTrue as assertFalse does a strict comparison on type
+        $this->assertNotTrue($graphCon->isDirected());
+        $this->assertEquals(0, $graphCon->isDirected());
+        $this->assertEquals(false, $graphCon->isDirected());
+        
+        $graphCon = new \Graph\GraphContainer(true, true);
+        // use assertNotFalse as assertTrue does a strict comparison on type
+        $this->assertNotFalse($graphCon->isDirected());
+        $this->assertEquals(1, $graphCon->isDirected());
+        $this->assertEquals(true, $graphCon->isDirected());
+        
+        $graphCon = new \Graph\GraphContainer(true, true, true);
+        // use assertNotFalse as assertTrue does a strict comparison on type
+        $this->assertNotFalse($graphCon->isDirected());
+        $this->assertEquals(1, $graphCon->isDirected());
+        $this->assertEquals(true, $graphCon->isDirected());
     }
 }
