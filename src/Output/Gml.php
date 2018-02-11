@@ -32,7 +32,7 @@ class Gml implements FileOutput
             if ($node->name != '') {
                 file_put_contents(
                     $filename,
-                    "\n    label \"" . $aNode->name . "\"",
+                    "\n    label \"" . $node->name . "\"",
                     FILE_APPEND
                 );
             }
@@ -45,12 +45,30 @@ class Gml implements FileOutput
         }
         
         foreach($graphCon->getEdges() as $edge) {
+            $weight = $edge->weight;
+            if (!$graphCon->isDirected()) {
+                $weight = $weight / 2;
+            }
+            
             file_put_contents(
                 $filename,
                 "\n  edge\n  [\n    source " . $edge->from
                     . "\n    target " . $edge->to
-                    . "\n    label \"" . $edge->label
-                    . "\"\n  ]",
+                    . "\n    value " . $weight,
+                FILE_APPEND
+            );
+            
+            if ($edge->label != '') {
+                file_put_contents(
+                    $filename,
+                    "\n    label \"" . $edge->label . "\"",
+                    FILE_APPEND
+                );
+            }
+            
+            file_put_contents(
+                $filename,
+                "\n  ]",
                 FILE_APPEND
             );
         }

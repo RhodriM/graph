@@ -18,6 +18,7 @@ class Edge
     public $from;
     public $to;
     public $weight;
+    public $label = '';
     
     public function __construct($f, $t, $w)
     {

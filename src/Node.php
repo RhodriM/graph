@@ -20,9 +20,10 @@ class Node
     protected $edgesOut;
     protected $edgesIn;
     
-    public function __construct() {
+    public function __construct($name = '') {
         $this->edgesIn = array();
         $this->edgesOut = array();
+        $this->name = $name;
     }
     
     public function addEdgeOut(Edge &$e)
