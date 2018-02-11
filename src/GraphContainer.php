@@ -50,9 +50,12 @@ class GraphContainer
         }
     }
     
-    public function addEdge(Node &$from, Node &$to, $weight = 1)
+    public function addEdge(Node &$from, Node &$to, $weight = 1, $label = 0)
     {
         $edge = new Edge($from->id, $to->id, $weight);
+        if ($label != '') {
+            $edge->label = $label;
+        }
         
         $from->addEdgeOut($edge);
         $to->addEdgeIn($edge);
@@ -63,7 +66,7 @@ class GraphContainer
             $this->adjacencyMatrix[$from->id][$to->id] = $weight;
         }
         
-        $reversedEdge = new Edge($to->id, $from->id, $weight);
+        $reversedEdge = new Edge($to->id, $from->id, $weight, $label);
         
         if (!$this->directed && !$to->edgeOutExists($reversedEdge)) {
             $this->addEdge($to, $from, $weight);
