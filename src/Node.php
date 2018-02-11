@@ -64,10 +64,11 @@ class Node
     
     /**
      * Initialises edges arrays and sets optional name if passed.
-     * 
+     *
      * @param String $name
      */
-    public function __construct($name = '') {
+    public function __construct($name = '')
+    {
         $this->edgesIn = array();
         $this->edgesOut = array();
         $this->name = $name;
@@ -87,7 +88,7 @@ class Node
      * @param \Graph\Edge $e
      */
     public function addEdgeIn(Edge &$e)
-    { 
+    {
         $this->edgesIn[] = $e;
     }
     
@@ -95,14 +96,13 @@ class Node
      * Compares an edge to those existing in edgesOut to see if already exists.
      * (Note weight sensitive - an existing edge between the same notes with a
      * different weight will cause this to return false).
-     * 
+     *
      * @param \Graph\Edge $e
      * @return boolean
      */
     public function edgeOutExists(Edge $e)
     {
-        foreach ($this->edgesOut as $existingEdge)
-        {
+        foreach ($this->edgesOut as $existingEdge) {
             if ($e == $existingEdge) {
                 return true;
             }
@@ -115,7 +115,7 @@ class Node
      * Compares an edge to those existing in edgesIn to see if already exists.
      * (Note weight sensitive - an existing edge between the same notes with a
      * different weight will cause this to return false).
-     * 
+     *
      * @param \Graph\Edge $e
      * @return boolean
      */
@@ -129,7 +129,6 @@ class Node
     }
     
     /**
-     * 
      * @return array
      */
     public function getNeighboursOut()
@@ -138,7 +137,6 @@ class Node
     }
     
     /**
-     * 
      * @return array
      */
     public function getNeighboursIn()

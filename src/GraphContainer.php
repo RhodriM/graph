@@ -69,7 +69,7 @@ class GraphContainer
     /**
      * Configures graphContainer instance and creates adjacency matrix if
      * required
-     * 
+     *
      * @param bool $maintainAdjacencyMatrix
      * @param bool $directed
      * @param bool $weighted
@@ -91,7 +91,7 @@ class GraphContainer
     /**
      * Adds a node, assigning it an incremental ID. Also updates adjacency
      * matrix if required.
-     * 
+     *
      * @param \Graph\Node $n
      */
     public function addNode(Node $n)
@@ -112,7 +112,7 @@ class GraphContainer
      * Creates an edge from node to node. Also updates adjacency matrix if
      * required. If graph is undirected, also creates corresponding reverse
      * edge.
-     * 
+     *
      * @param \Graph\Node $from
      * @param \Graph\Node $to
      * @param int|float $weight

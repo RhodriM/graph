@@ -58,7 +58,7 @@ class Edge
     public $label = '';
     
     /**
-     * 
+     *
      * @param int $f id of node from
      * @param int $t id of node to
      * @param int|float $w weight

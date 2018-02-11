@@ -27,7 +27,7 @@ namespace Graph\Output;
 
 /**
  * Write GraphContainer to gml file.
- * 
+ *
  * https://en.wikipedia.org/wiki/Graph_Modelling_Language
  *
  * @author rhodrimorris
@@ -35,11 +35,11 @@ namespace Graph\Output;
 class Gml implements FileOutput
 {
     /**
-     * 
      * @param String $filename
      * @param \Graph\GraphContainer $graphCon
      */
-    public function writeToFile($filename, \Graph\GraphContainer $graphCon) {
+    public function writeToFile($filename, \Graph\GraphContainer $graphCon)
+    {
         file_put_contents(
             $filename,
             "graph\n"
@@ -47,11 +47,12 @@ class Gml implements FileOutput
             "\n  directed " . intval($graphCon->isDirected())
         );
         
-        foreach($graphCon->getNodes() as $node) {
+        foreach ($graphCon->getNodes() as $node) {
             file_put_contents(
                 $filename,
                 "\n  node\n  [\n    id " . $node->id,
-                FILE_APPEND);
+                FILE_APPEND
+            );
             
             if ($node->name != '') {
                 file_put_contents(
@@ -68,7 +69,7 @@ class Gml implements FileOutput
             );
         }
         
-        foreach($graphCon->getEdges() as $edge) {
+        foreach ($graphCon->getEdges() as $edge) {
             $weight = $edge->weight;
             if (!$graphCon->isDirected()) {
                 $weight = $weight / 2;
