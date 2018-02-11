@@ -92,6 +92,32 @@ class Node
         $this->edgesIn[] = $e;
     }
     
+    public function removeEdgeOut(Edge $edge)
+    {
+        for ($i = 0; $i < count($this->edgesOut); $i++) {
+            if ($this->edgesOut[$i] == $edge) {
+                unset($this->edgesOut[$i]);
+                break;
+            }
+        }
+        
+        //reindex array from 0
+        $this->edgesOut = array_values($this->edgesOut);
+    }
+    
+    public function removeEdgeIn(Edge $edge)
+    {
+        for ($i = 0; $i < count($this->edgesIn); $i++) {
+            if ($this->edgesIn[$i] == $edge) {
+                unset($this->edgesIn[$i]);
+                break;
+            }
+        }
+        
+        //reindex array from 0
+        $this->edgesIn = array_values($this->edgesIn);
+    }
+    
     /**
      * Compares an edge to those existing in edgesOut to see if already exists.
      * (Note weight sensitive - an existing edge between the same notes with a

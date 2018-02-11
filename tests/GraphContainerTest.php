@@ -204,4 +204,100 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $graphCon->isDirected());
         $this->assertEquals(true, $graphCon->isDirected());
     }
+    
+    public function testRemoveEdgeDirected()
+    {
+        // directed graph
+        $graphCon = new \Graph\GraphContainer(true, true);
+        
+        $n1 = new \Graph\Node();
+        $graphCon->addNode($n1);
+        
+        $n2 = new \Graph\Node();
+        $graphCon->addNode($n2);
+        
+        $n3 = new \Graph\Node();
+        $graphCon->addNode($n3);
+        
+        $graphCon->addEdge($n1, $n2, 1);
+        
+        $this->assertEquals(1, count($n1->getNeighboursOut()));
+        $this->assertEquals(0, count($n1->getNeighboursIn()));
+        $this->assertEquals(
+            array(
+                array(null, 1, null),
+                array(null, null, null),
+                array(null, null, null)
+            ),
+            $graphCon->getAdjacencyMatrix()
+        );
+        
+        $this->assertEquals(1, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
+        
+        // remove edge which doesn't exist
+        $graphCon->removeEdge(new \Graph\Edge(11, 12, 1));
+        
+        // remove edge
+        $graphCon->removeEdge(new \Graph\Edge($n1->id, $n2->id, 1));
+        $this->assertEquals(0, count($graphCon->getEdges()));
+        $this->assertFalse($n1->edgeOutExists(new \Graph\Edge($n1->id, $n2->id, 1)));
+        $this->assertFalse($n2->edgeInExists(new \Graph\Edge($n1->id, $n2->id, 1)));
+        
+        $this->assertEquals(
+            array(
+                array(null, null, null),
+                array(null, null, null),
+                array(null, null, null)
+            ),
+            $graphCon->getAdjacencyMatrix()
+        );
+    }
+    
+    public function testRemoveEdgeUnDirected()
+    {        
+        // undirected graph
+        $graphCon = new \Graph\GraphContainer(true, false);
+        
+        $n1 = new \Graph\Node();
+        $graphCon->addNode($n1);
+        
+        $n2 = new \Graph\Node();
+        $graphCon->addNode($n2);
+        
+        $n3 = new \Graph\Node();
+        $graphCon->addNode($n3);
+        
+        $graphCon->addEdge($n1, $n2, 1);
+        
+        $this->assertEquals(1, count($n1->getNeighboursOut()));
+        $this->assertEquals(1, count($n1->getNeighboursIn()));
+        $this->assertEquals(
+            array(
+                array(null, 1, null),
+                array(1, null, null),
+                array(null, null, null)
+            ),
+            $graphCon->getAdjacencyMatrix()
+        );
+        
+        $this->assertEquals(2, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
+        
+        $graphCon->removeEdge(new \Graph\Edge($n1->id, $n2->id, 1));
+        $this->assertEquals(0, count($graphCon->getEdges()));
+        $this->assertFalse($n1->edgeOutExists(new \Graph\Edge($n1->id, $n2->id, 1)));
+        $this->assertFalse($n2->edgeInExists(new \Graph\Edge($n1->id, $n2->id, 1)));
+        $this->assertFalse($n2->edgeOutExists(new \Graph\Edge($n1->id, $n2->id, 1)));
+        $this->assertFalse($n1->edgeInExists(new \Graph\Edge($n1->id, $n2->id, 1)));
+        
+        $this->assertEquals(
+            array(
+                array(null, null, null),
+                array(null, null, null),
+                array(null, null, null)
+            ),
+            $graphCon->getAdjacencyMatrix()
+        );
+    }
 }

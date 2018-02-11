@@ -143,6 +143,42 @@ class GraphContainer
         }
     }
     
+    public function removeEdge(Edge $edge)
+    {
+        $found = false;
+        
+        for ($i = 0; $i < count($this->edges); $i++) {
+            if ($this->edges[$i] == $edge) {
+                unset($this->edges[$i]);
+                $found = true;
+                break;
+            }
+        }
+        
+        if (!$found) {
+            return false;
+        }
+        
+        //reindex array from 0
+        $this->edges = array_values($this->edges);
+        
+        $this->nodes[$edge->from]->removeEdgeOut($edge);
+        $this->nodes[$edge->to]->removeEdgeIn($edge);
+        
+        if ($this->maintainAdjacencyMatrix) {
+            $this->adjacencyMatrix[$edge->from][$edge->to] = null;
+        }
+        
+        $reversedEdge = new Edge($edge->to, $edge->from, $edge->weight, $edge->label);
+        
+        if (!$this->directed && $this->nodes[$edge->to]->edgeOutExists($reversedEdge)) {
+            // remove corresponding reverse edge for unweighted graphs
+            $this->removeEdge($reversedEdge);
+        }
+        
+        return true;
+    }
+    
     /**
      * @return array
      */
