@@ -143,6 +143,19 @@ class GraphContainer
         }
     }
     
+    /**
+     * Alternative function for adding edges
+     *
+     * @param int $from
+     * @param int $to
+     * @param int|float $weight
+     * @param String $label
+     */
+    public function addEdgeByIds($from, $to, $weight = 1, $label = '')
+    {
+        $this->addEdge($this->nodes[$from], $this->nodes[$to], $weight, $label);
+    }
+    
     public function removeEdge(Edge $edge)
     {
         $found = false;
