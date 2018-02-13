@@ -83,6 +83,9 @@ class GraphContainer
         $this->directed = $directed;
         $this->weighted = $weighted;
         
+        $this->edges = array();
+        $this->nodes = array();
+        
         if ($maintainAdjacencyMatrix) {
             $this->adjacencyMatrix = array(array());
         }
