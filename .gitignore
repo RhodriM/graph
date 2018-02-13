@@ -2,3 +2,4 @@ build/
 vendor/
 composer
 composer.phar
+.DS_Store
