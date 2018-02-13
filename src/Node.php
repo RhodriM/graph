@@ -63,6 +63,12 @@ class Node
     protected $edgesIn;
     
     /**
+     * Optional colour for displaying in some graphing software
+     * @var String
+     */
+    public $colour;
+    
+    /**
      * Initialises edges arrays and sets optional name if passed.
      *
      * @param String $name
@@ -72,6 +78,7 @@ class Node
         $this->edgesIn = array();
         $this->edgesOut = array();
         $this->name = $name;
+        $this->colour = '';
     }
     
     /**

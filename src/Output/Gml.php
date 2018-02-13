@@ -33,7 +33,7 @@ namespace Graph\Output;
  * @author rhodrimorris
  */
 class Gml implements FileOutput
-{
+{   
     /**
      * @param String $filename
      * @param \Graph\GraphContainer $graphCon
@@ -58,6 +58,16 @@ class Gml implements FileOutput
                 file_put_contents(
                     $filename,
                     "\n    label \"" . $node->name . "\"",
+                    FILE_APPEND
+                );
+            }
+            
+            if ($node->colour != '') {
+
+                file_put_contents(
+                    $filename,
+                    "\n    graphics" . "\n    [\n      fill \""
+                    . '#' . $node->colour . "\"" . "\n    ]",
                     FILE_APPEND
                 );
             }
