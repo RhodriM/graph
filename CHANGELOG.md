@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [Unreleased](https://github.com/RhodriM/graph/compare/v0.6...master)
 
 ## [v0.6](https://github.com/RhodriM/graph/compare/v0.56...v0.6) - 2018-02-13
 ### Added
