@@ -113,7 +113,15 @@ We can export our graphs to data formats such as GML for use by other applicatio
 $gmlOutput = new \Graph\Output\Gml();
 $gmlOutput->writeToFile('testGraph.gml', $graphCon);
 ```
-Exporting the very basic graph example above to Gephi:
+Exporting the very basic graph example above to Gephi gives:
 
 ![alt text](http://rhodrimorris.co.uk/basic-graph.png "basic graph")
 
+It is also possible to assign labels and colours to nodes for use in external viewers:
+
+```php
+$node1->name = "Node 1";
+$node1->colour = 'FF8888';
+```
+
+![alt text](http://rhodrimorris.co.uk/basic-graph2.png "basic graph)
