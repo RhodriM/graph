@@ -113,4 +113,6 @@ We can export our graphs to data formats such as GML for use by other applicatio
 $gmlOutput = new \Graph\Output\Gml();
 $gmlOutput->writeToFile('testGraph.gml', $graphCon);
 ```
-Opening the file in Gephi will allow a visualisation such as this:
+Exporting the very basic graph example above to Gephi:
+![alt text](http://users.cs.cf.ac.uk/MorrisRL6/images/basic-graph.png "basic graph")
+
