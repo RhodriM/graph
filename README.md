@@ -23,4 +23,31 @@ Add the following to the repositories and require sections of your composer.json
 ```
 
 run ```composer update``` and use the supplied autoloader
-(usually by adding ```require __DIR__ . '/vendor/autoload.php';``` at the top of your script).
+(usually by adding
+```require __DIR__ . '/vendor/autoload.php';```
+at the top of your script).
+
+### Basic Usage
+
+The ```Node``` and ```Edge``` classes are designed to be extended by your own if required, so you can use your own entities as nodes or edges within a graph structure. eg:
+
+```php
+class Person extends \Graph\Node
+{
+    [...]
+}
+```
+
+```GraphContainer``` is the recommended way of storing, adding, removing nodes and edges to ensure consistency.
+
+```php
+$maintainAdjacencyMatrix = false;
+$directed = true;
+$weighted = false;
+
+$graphCon = new \Graph\GraphContainer(
+    $maintainAdjacencyMatrix,
+    $directed,
+    $weighted
+);
+```
