@@ -40,6 +40,7 @@ class GmlTest extends \PHPUnit_Framework_TestCase
         $node1 = new \Graph\Node();
         $node2 = new \Graph\Node();
         $node3 = new \Graph\Node();
+        $node3->colour = '#FFFFFF';
         $node4 = new \Graph\Node();
 
         $graphCon->addNode($node1);

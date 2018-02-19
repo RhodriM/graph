@@ -178,6 +178,37 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
     }
     
+    public function testAddEdgeById()
+    {
+        // directed graph
+        $graphCon = new \Graph\GraphContainer(true, true, true);
+        
+        $n1 = new \Graph\Node();
+        $graphCon->addNode($n1);
+        
+        $n2 = new \Graph\Node();
+        $graphCon->addNode($n2);
+        
+        $n3 = new \Graph\Node();
+        $graphCon->addNode($n3);
+        
+        $graphCon->addEdgeByIds($n1->id, $n2->id, 3);
+        
+        $this->assertEquals(1, count($n1->getNeighboursOut()));
+        $this->assertEquals(0, count($n1->getNeighboursIn()));
+        $this->assertEquals(
+            array(
+                array(null, 3, null),
+                array(null, null, null),
+                array(null, null, null)
+            ),
+            $graphCon->getAdjacencyMatrix()
+        );
+        
+        $this->assertEquals(1, count($graphCon->getEdges()));
+        $this->assertInstanceOf(\Graph\Edge::class, $graphCon->getEdges()[0]);
+    }
+    
     public function testIsDirected()
     {
         $graphCon = new \Graph\GraphContainer();
