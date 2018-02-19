@@ -114,5 +114,5 @@ $gmlOutput = new \Graph\Output\Gml();
 $gmlOutput->writeToFile('testGraph.gml', $graphCon);
 ```
 Exporting the very basic graph example above to Gephi:
-![alt text](http://users.cs.cf.ac.uk/MorrisRL6/images/basic-graph.png "basic graph")
+![alt text](http://users.cs.cf.ac.uk/MorrisRL6/images/basic-graph.png)
 
