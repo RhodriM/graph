@@ -1,5 +1,5 @@
 {
-    "name": "RhodriM/Graph",
+    "name": "rhodri-m/Graph",
     "description": "A very simple implementation of a Graph data structure.",
     "type": "library",
     "keywords": ["graph", "network", "node", "edge", "gml"],
