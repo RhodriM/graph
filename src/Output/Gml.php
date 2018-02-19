@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/**
  * The MIT License
  *
  * Copyright 2018 Rhodri Morris.
@@ -33,7 +33,7 @@ namespace Graph\Output;
  * @author rhodrimorris
  */
 class Gml implements FileOutput
-{   
+{
     /**
      * @param String $filename
      * @param \Graph\GraphContainer $graphCon
@@ -63,7 +63,6 @@ class Gml implements FileOutput
             }
             
             if ($node->colour != '') {
-
                 file_put_contents(
                     $filename,
                     "\n    graphics" . "\n    [\n      fill \""
