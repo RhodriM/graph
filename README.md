@@ -104,3 +104,13 @@ Array
 
 )
 ```
+
+### Outputting to graph file formats for use by other applications
+
+We can export our graphs to data formats such as GML for use by other applications, such as Gephi:
+
+```php
+$gmlOutput = new \Graph\Output\Gml();
+$gmlOutput->writeToFile('testGraph.gml', $graphCon);
+```
+Opening the file in Gephi will allow a visualisation such as this:
