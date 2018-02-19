@@ -1,4 +1,4 @@
-# RhodriM/graph
+# rhodri-m/graph
 A very simple implementation of a Graph data structure.
 
 ## Installation
