@@ -124,4 +124,4 @@ $node1->name = "Node 1";
 $node1->colour = 'FF8888';
 ```
 
-![alt text](http://rhodrimorris.co.uk/basic-graph2.png "basic graph)
+![alt text](http://rhodrimorris.co.uk/basic-graph2.png "basic graph")
