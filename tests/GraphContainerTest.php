@@ -86,7 +86,7 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
     }
     
     public function testAddEdgeUnDirected()
-    {        
+    {
         // undirected graph
         $graphCon = new \Graph\GraphContainer(true, false);
         
@@ -130,7 +130,7 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
         $n3 = new \Graph\Node();
         $graphCon->addNode($n3);
         
-        $graphCon->addEdge($n1, $n2,3);
+        $graphCon->addEdge($n1, $n2, 3);
         
         $this->assertEquals(1, count($n1->getNeighboursOut()));
         $this->assertEquals(0, count($n1->getNeighboursIn()));
@@ -148,7 +148,7 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
     }
     
     public function testAddEdgeUnDirectedWeighted()
-    {        
+    {
         // undirected graph
         $graphCon = new \Graph\GraphContainer(true, false, true);
         
@@ -286,7 +286,7 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
     }
     
     public function testRemoveEdgeUnDirected()
-    {        
+    {
         // undirected graph
         $graphCon = new \Graph\GraphContainer(true, false);
         
