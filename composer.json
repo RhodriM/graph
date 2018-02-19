@@ -1,11 +1,13 @@
 {
-    "name": "Graph",
+    "name": "RhodriM/Graph",
+    "description": "A very simple implementation of a Graph data structure.",
+    "type": "library",
+    "keywords": ["graph", "network", "node", "edge", "gml"],
     "license": "MIT",
     "authors": [
         {
             "name": "Rhodri Morris",
-            "email": "author_email@example.com",
-            "homepage": "http://author-website.example.com",
+            "homepage": "http://rhodrimorris.co.uk",
             "role": "Developer"
         }
     ],
