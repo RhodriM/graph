@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [v0.6] - 2018-02-13
+## [v0.6](https://github.com/RhodriM/graph/compare/v0.56...v0.6) - 2018-02-13
 ### Added
  - Added optional colour to nodes
  
