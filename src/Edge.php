@@ -59,14 +59,14 @@ class Edge
     
     /**
      *
-     * @param int $f id of node from
-     * @param int $t id of node to
-     * @param int|float $w weight
+     * @param int $from id of node from
+     * @param int $to id of node to
+     * @param int|float $weight weight
      */
-    public function __construct($f, $t, $w)
+    public function __construct($from, $to, $weight)
     {
-        $this->from = $f;
-        $this->to = $t;
-        $this->weight = $w;
+        $this->from = $from;
+        $this->to = $to;
+        $this->weight = $weight;
     }
 }

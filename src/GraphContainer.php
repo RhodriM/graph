@@ -95,18 +95,18 @@ class GraphContainer
      * Adds a node, assigning it an incremental ID. Also updates adjacency
      * matrix if required.
      *
-     * @param \Graph\Node $n
+     * @param \Graph\Node $node
      */
-    public function addNode(Node $n)
+    public function addNode(Node $node)
     {
-        $n->id = count($this->nodes);
-        $this->nodes[] = $n;
+        $node->id = count($this->nodes);
+        $this->nodes[] = $node;
         
         if ($this->maintainAdjacencyMatrix) {
-            $this->adjacencyMatrix[$n->id] = array();
+            $this->adjacencyMatrix[$node->id] = array();
             for ($i = 0; $i < count($this->adjacencyMatrix); $i++) {
-                $this->adjacencyMatrix[$n->id][$i] = null;
-                $this->adjacencyMatrix[$i][$n->id] = null;
+                $this->adjacencyMatrix[$node->id][$i] = null;
+                $this->adjacencyMatrix[$i][$node->id] = null;
             }
         }
     }

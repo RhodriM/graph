@@ -83,20 +83,20 @@ class Node
     
     /**
      * Adds edge to edgesOut - note pass by reference
-     * @param \Graph\Edge $e
+     * @param \Graph\Edge $edge
      */
-    public function addEdgeOut(Edge &$e)
+    public function addEdgeOut(Edge &$edge)
     {
-        $this->edgesOut[] = $e;
+        $this->edgesOut[] = $edge;
     }
     
     /**
      * Adds edge to edgesIn - note pass by reference
-     * @param \Graph\Edge $e
+     * @param \Graph\Edge $edge
      */
-    public function addEdgeIn(Edge &$e)
+    public function addEdgeIn(Edge &$edge)
     {
-        $this->edgesIn[] = $e;
+        $this->edgesIn[] = $edge;
     }
     
     public function removeEdgeOut(Edge $edge)
@@ -130,13 +130,13 @@ class Node
      * (Note weight sensitive - an existing edge between the same notes with a
      * different weight will cause this to return false).
      *
-     * @param \Graph\Edge $e
+     * @param \Graph\Edge $edge
      * @return boolean
      */
-    public function edgeOutExists(Edge $e)
+    public function edgeOutExists(Edge $edge)
     {
         foreach ($this->edgesOut as $existingEdge) {
-            if ($e == $existingEdge) {
+            if ($edge == $existingEdge) {
                 return true;
             }
         }
@@ -149,12 +149,12 @@ class Node
      * (Note weight sensitive - an existing edge between the same notes with a
      * different weight will cause this to return false).
      *
-     * @param \Graph\Edge $e
+     * @param \Graph\Edge $edge
      * @return boolean
      */
-    public function edgeInExists(Edge $e)
+    public function edgeInExists(Edge $edge)
     {
-        if (in_array($e, $this->edgesIn)) {
+        if (in_array($edge, $this->edgesIn)) {
             return true;
         }
         
