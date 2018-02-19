@@ -1,7 +1,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/RhodriM/graph/compare/v0.6...master)
+## [Unreleased](https://github.com/RhodriM/graph/compare/1.0.0...master)
+
+## [1.0.0](https://github.com/RhodriM/graph/compare/v0.6...1.0.0) - 2018-02-19
+### Added
+ - Added License
+ - Added Readme
+ - Added Code of Conduct
+ - Added Changelog
+ - Additional test coverage
+### Fixed
+ - Tidied code, comply with code standards and phpmd
+ - improved composer.json
+ - move to better version numbers (semantic versioning)
 
 ## [v0.6](https://github.com/RhodriM/graph/compare/v0.56...v0.6) - 2018-02-13
 ### Added
