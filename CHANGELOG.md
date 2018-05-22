@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
  - Added Contributing guide
  - Added Issue Template
+ - Added Breadth-first search
 ### Edited
  - Edited Readme
  
