@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ### Added
  - Added Contributing guide
  - Added Issue Template
+### Edited
+ - Edited Readme
  
 
 ## [1.0.0](https://github.com/RhodriM/graph/compare/v0.6...1.0.0) - 2018-02-19
