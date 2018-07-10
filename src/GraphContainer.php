@@ -226,4 +226,23 @@ class GraphContainer
     {
         return $this->directed;
     }
+    
+    /**
+     * Returns edge object between from/to ids. If edge doesn't exist, return
+     * false.
+     *
+     * @param int $fromId
+     * @param int $toId
+     * @return \Graph\Edge | boolean
+     */
+    public function findEdgeInOutList($fromId, $toId)
+    {
+        foreach ($this->nodes[$fromId]->getNeighboursOut() as $nEdge) {
+            if ($nEdge->to == $toId) {
+                return $nEdge;
+            }
+        }
+        
+        return false;
+    }
 }

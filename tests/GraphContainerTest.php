@@ -331,4 +331,23 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
             $graphCon->getAdjacencyMatrix()
         );
     }
+    
+    public function testFindEdgeInOutList()
+    {
+        $graphCon = new \Graph\GraphContainer();
+        
+        $n1 = new \Graph\Node();
+        $graphCon->addNode($n1);
+        
+        $n2 = new \Graph\Node();
+        $graphCon->addNode($n2);
+        
+        $n3 = new \Graph\Node();
+        $graphCon->addNode($n3);
+        
+        $graphCon->addEdge($n1, $n2, 1);
+        
+        $edge = $graphCon->findEdgeInOutList(0, 1);
+        $this->assertEquals(1, $edge->to);
+    }
 }
