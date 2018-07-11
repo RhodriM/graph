@@ -1,7 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/RhodriM/graph/compare/1.2.0...master)
+## [Unreleased](https://github.com/RhodriM/graph/compare/1.3.0...master)
+
+## [1.3.0](https://github.com/RhodriM/graph/compare/1.2.0...1.3.0) - 2018-07-11
+### Added
+ - Added AllSimplePathsFromNode search
 
 ## [1.2.0](https://github.com/RhodriM/graph/compare/1.1.0...1.2.0) - 2018-07-10
 ### Added
