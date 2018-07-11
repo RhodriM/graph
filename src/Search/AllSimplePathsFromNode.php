@@ -3,7 +3,18 @@
 namespace Graph\Search;
 
 /**
- * Description of AllSimplePathsFromNode
+ * AllSimplePathsFromNode
+ *
+ * Given a graph, starting node and limit (all specified in constructor) will
+ * calculate all simple non-cycling paths from starting node within specified
+ * limit. Very similar to depth-first search.
+ * Usage:
+ * $pathsSearch = new \Graph\Search\AllSimplePathsFromNode(
+ *     $graph,
+ *     $startNode,
+ *     2
+ * );
+ * $paths = $pathsSearch->getSimplePathsFromNode();
  *
  * @author rhodri
  */
