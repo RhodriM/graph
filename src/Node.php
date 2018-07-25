@@ -37,7 +37,7 @@ class Node
      * Unique identifier. Usually set by GraphContainer.
      * @var int
      */
-    public $id;
+    public $id = null;
     
     /**
      * Optional label - may be used by external software (ie Gephi) that graph

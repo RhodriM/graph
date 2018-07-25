@@ -31,6 +31,41 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $n->id);
     }
     
+    public function testAddNodesWithIds()
+    {
+        $graphCon = new \Graph\GraphContainer();
+        $n = new \Graph\Node();
+        $n->id = 2;
+        $n->name = 'node 2';
+        $graphCon->addNode($n, $n->id);
+        
+        $this->assertEquals(1, count($graphCon->getNodes()));
+        $this->assertEquals(2, $graphCon->getNodes()[2]->id);
+        $this->assertFalse(array_key_exists(0, $graphCon->getNodes()));
+        
+        $n = new \Graph\Node();
+        $n->id = 1;
+        $n->name = 'node 1';
+        $graphCon->addNode($n, $n->id);
+        
+        $this->assertEquals(2, count($graphCon->getNodes()));
+        $this->assertFalse(array_key_exists(0, $graphCon->getNodes()));
+        
+        $n = new \Graph\Node();
+        $n->id = 0;
+        $n->name = 'node 0';
+        $graphCon->addNode($n, $n->id);
+        
+        $n = new \Graph\Node();
+        $n->name = 'node n';
+        $graphCon->addNode($n);
+        
+        $this->assertEquals('node 0', $graphCon->getNodes()[0]->name);
+        $this->assertEquals('node 1', $graphCon->getNodes()[1]->name);
+        $this->assertEquals('node 2', $graphCon->getNodes()[2]->name);
+        $this->assertEquals('node n', $graphCon->getNodes()[3]->name);
+    }
+    
     public function testGetNewAdjacencyMatrix()
     {
         $graphCon = new \Graph\GraphContainer(true);

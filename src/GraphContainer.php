@@ -92,15 +92,23 @@ class GraphContainer
     }
     
     /**
-     * Adds a node, assigning it an incremental ID. Also updates adjacency
+     * Adds a node, assigning it an incremental ID or inserting it at index of
+     * id if id specified. Recommended not to set ids. Also updates adjacency
      * matrix if required.
      *
      * @param \Graph\Node $node
+     * @param int $id - specify an id, node will be inserted at that index
      */
-    public function addNode(Node $node)
+    public function addNode(Node $node, $id = '')
     {
-        $node->id = count($this->nodes);
-        $this->nodes[] = $node;
+        if ($id === '') {
+            $node->id = count($this->nodes);
+            $this->nodes[] = $node;
+        } else {
+            $node->id = $id;
+            $this->nodes[$id] = $node;
+            ksort($this->nodes);
+        }
         
         if ($this->maintainAdjacencyMatrix) {
             $this->adjacencyMatrix[$node->id] = array();
@@ -127,6 +135,10 @@ class GraphContainer
         
         if ($label != '') {
             $edge->label = $label;
+        }
+        
+        if ($from->edgeOutExists($edge) || $to->edgeInExists($edge)) {
+            return;
         }
         
         $from->addEdgeOut($edge);
