@@ -83,16 +83,21 @@ class Gml implements FileInput
      */
     protected function parseGraphAttributes($linesArray)
     {
-        if (strpos($linesArray[0], 'graph [') === false) {
+        if (strpos($linesArray[0], 'graph') === false) {
             throw new \Exception('does not start with graph [');
         }
         
         $graphAttributes = array();
         
         for ($i = 1; $i < count($linesArray); $i++) {
-            if ($linesArray[$i] == "\tnode [") {
+            if ($linesArray[$i] == "\tnode [" || $linesArray[$i] == "\tnode") {
                 break;
             }
+            
+            if ($linesArray[$i] == "[") {
+                continue;
+            }
+            
             $key = trim(substr($linesArray[$i], 0, strpos($linesArray[$i], ' ')));
             $value = trim(substr($linesArray[$i], strpos($linesArray[$i], ' ') + 1));
 
@@ -108,9 +113,15 @@ class Gml implements FileInput
      */
     protected function parseNodes($linesArray)
     {
-        foreach ($linesArray as $lineCount => $lineValue) {
-            if ($lineValue == "\tnode [") {
-                $this->parseNode($lineCount, $linesArray);
+        for ($i = 0; $i < count($linesArray); $i++) {
+            if ($linesArray[$i] == "\tnode [") {
+                $this->parseNode($i, $linesArray);
+                continue;
+            }
+            
+            if ($linesArray[$i] == "\tnode" && $linesArray[$i + 1] == "\t[") {
+                $this->parseNode($i + 1, $linesArray);
+                continue;
             }
         }
     }
@@ -154,9 +165,15 @@ class Gml implements FileInput
      */
     protected function parseEdges($linesArray)
     {
-        foreach ($linesArray as $lineCount => $lineValue) {
-            if ($lineValue == "\tedge [") {
-                $this->parseEdge($lineCount, $linesArray);
+        for ($i = 0; $i < count($linesArray); $i++) {
+            if ($linesArray[$i] == "\tedge [") {
+                $this->parseEdge($i, $linesArray);
+                continue;
+            }
+            
+            if ($linesArray[$i] == "\tedge" && $linesArray[$i + 1] == "\t[") {
+                $this->parseEdge($i + 1, $linesArray);
+                continue;
             }
         }
     }
