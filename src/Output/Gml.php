@@ -44,20 +44,20 @@ class Gml implements FileOutput
             $filename,
             "graph\n"
             . "[".
-            "\n  directed " . intval($graphCon->isDirected())
+            "\n\tdirected " . intval($graphCon->isDirected())
         );
         
         foreach ($graphCon->getNodes() as $node) {
             file_put_contents(
                 $filename,
-                "\n  node\n  [\n    id " . $node->id,
+                "\n\tnode\n\t[\n\t\tid " . $node->id,
                 FILE_APPEND
             );
             
             if ($node->name != '') {
                 file_put_contents(
                     $filename,
-                    "\n    label \"" . $node->name . "\"",
+                    "\n\t\tlabel \"" . $node->name . "\"",
                     FILE_APPEND
                 );
             }
@@ -65,15 +65,15 @@ class Gml implements FileOutput
             if ($node->colour != '') {
                 file_put_contents(
                     $filename,
-                    "\n    graphics" . "\n    [\n      fill \""
-                    . '#' . $node->colour . "\"" . "\n    ]",
+                    "\n\t\tgraphics" . "\n\t\t[\n\t\t\tfill \""
+                    . '#' . $node->colour . "\"" . "\n\t\t]",
                     FILE_APPEND
                 );
             }
             
             file_put_contents(
                 $filename,
-                "\n  ]",
+                "\n\t]",
                 FILE_APPEND
             );
         }
@@ -86,23 +86,23 @@ class Gml implements FileOutput
             
             file_put_contents(
                 $filename,
-                "\n  edge\n  [\n    source " . $edge->from
-                    . "\n    target " . $edge->to
-                    . "\n    value " . $weight,
+                "\n\tedge\n\t[\n\t\tsource " . $edge->from
+                    . "\n\t\ttarget " . $edge->to
+                    . "\n\t\tvalue " . $weight,
                 FILE_APPEND
             );
             
             if ($edge->label != '') {
                 file_put_contents(
                     $filename,
-                    "\n    label \"" . $edge->label . "\"",
+                    "\n\t\tlabel \"" . $edge->label . "\"",
                     FILE_APPEND
                 );
             }
             
             file_put_contents(
                 $filename,
-                "\n  ]",
+                "\n\t]",
                 FILE_APPEND
             );
         }
