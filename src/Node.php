@@ -176,4 +176,15 @@ class Node
     {
         return $this->edgesIn;
     }
+    
+    public function __clone()
+    {
+        foreach ($this->edgesIn as $key => $edgeIn) {
+            $this->edgesIn[$key] = clone $edgeIn;
+        }
+        
+        foreach ($this->edgesOut as $key => $edgeOut) {
+            $this->edgesOut[$key] = clone $edgeOut;
+        }
+    }
 }

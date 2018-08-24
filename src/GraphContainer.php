@@ -257,4 +257,15 @@ class GraphContainer
         
         return false;
     }
+    
+    public function __clone()
+    {
+        foreach ($this->nodes as $key => $node) {
+            $this->nodes[$key] = clone $node;
+        }
+        
+        foreach ($this->edges as $key => $edge) {
+            $this->edges[$key] = clone $edge;
+        }
+    }
 }

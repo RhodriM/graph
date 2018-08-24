@@ -385,4 +385,30 @@ class GraphContainerTest extends \PHPUnit_Framework_TestCase
         $edge = $graphCon->findEdgeInOutList(0, 1);
         $this->assertEquals(1, $edge->to);
     }
+    
+    public function testClone()
+    {
+        $graphCon = new \Graph\GraphContainer();
+        
+        $n1 = new \Graph\Node();
+        $n1->name = 'test123';
+        $graphCon->addNode($n1);
+        
+        $n2 = new \Graph\Node();
+        $graphCon->addNode($n2);
+        
+        $graphCon->addEdge($n1, $n2, 1);
+        
+        $graphCon2 = clone $graphCon;
+        
+        $graphCon2->getNodes()[0]->name = 'test321';
+        
+        $this->assertEquals('test123', $graphCon->getNodes()[0]->name);
+        $this->assertEquals('test321', $graphCon2->getNodes()[0]->name);
+        
+        $this->assertNotEquals(
+            spl_object_hash($graphCon->getEdges()[0]),
+            spl_object_hash($graphCon2->getEdges()[0])
+        );
+    }
 }
