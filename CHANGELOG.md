@@ -1,7 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/RhodriM/graph/compare/1.3.0...master)
+## [Unreleased](https://github.com/RhodriM/graph/compare/1.5.0...master)
+
+## [1.5.0](https://github.com/RhodriM/graph/compare/1.4.2...1.5.0) - 2018-08-24
+### Added
+ - Add clone methods to GraphContainer and Node
+
+## [1.4.2](https://github.com/RhodriM/graph/compare/1.3.0...1.4.2) - 2018-07-30
+### Added
+ - Allow adding nodes with ids
+ - GML Input
+### Edited
+ - Fixes to GML parser and GML output
 
 ## [1.3.0](https://github.com/RhodriM/graph/compare/1.2.0...1.3.0) - 2018-07-11
 ### Added
