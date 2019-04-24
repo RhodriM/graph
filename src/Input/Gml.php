@@ -30,8 +30,7 @@ namespace Graph\Input;
  * simplistic as a GML parser for the time being; makes assumptions on the
  * structure of the GML file and so may not work for all valid GML.
  *
- * Some assumptions: sections indented by tabs; graph attributes come before
- * nodes and edges.
+ * Some assumptions: graph attributes come first, then nodes, then edges.
  *
  * @author rhodrimorris
  */
@@ -90,11 +89,11 @@ class Gml implements FileInput
         $graphAttributes = array();
         
         for ($i = 1; $i < count($linesArray); $i++) {
-            if ($linesArray[$i] == "\tnode [" || $linesArray[$i] == "\tnode") {
+            if (strpos($linesArray[$i], "node") !== false) {
                 break;
             }
             
-            if ($linesArray[$i] == "[") {
+            if (strpos($linesArray[$i], "[") !== false) {
                 continue;
             }
             
@@ -114,13 +113,15 @@ class Gml implements FileInput
     protected function parseNodes($linesArray)
     {
         for ($i = 0; $i < count($linesArray); $i++) {
-            if ($linesArray[$i] == "\tnode [") {
-                $this->parseNode($i, $linesArray);
+            if (strpos($linesArray[$i], "node [") !== false) {
+                $this->parseNode($i + 1, $linesArray);
                 continue;
             }
             
-            if ($linesArray[$i] == "\tnode" && $linesArray[$i + 1] == "\t[") {
-                $this->parseNode($i + 1, $linesArray);
+            if (strpos($linesArray[$i], "node") !== false
+                && strpos($linesArray[$i + 1], "[") !== false
+            ) {
+                $this->parseNode($i + 2, $linesArray);
                 continue;
             }
         }
@@ -136,12 +137,15 @@ class Gml implements FileInput
         $node = new \Graph\Node();
         
         for ($i = $lineCount; $i < count($linesArray); $i++) {
-            if ($linesArray[$i] == "\t]") {
+            if (strpos($linesArray[$i], "]") !== false) {
                 break;
             }
             
-            $key = trim(substr($linesArray[$i], 0, strpos($linesArray[$i], ' ')));
-            $value = trim(substr($linesArray[$i], strpos($linesArray[$i], ' ') + 1));
+            $thisLine = trim($linesArray[$i]);
+            $key = trim(substr($thisLine, 0, strpos($thisLine, ' ')));
+            $value = trim(substr($thisLine, strpos($thisLine, ' ') + 1));
+            
+            $value = trim($value, '"');
             
             if (is_numeric($value)) {
                 $value = (int)$value;
@@ -153,7 +157,7 @@ class Gml implements FileInput
                 $node->name = $value;
             }
         }
-        
+
         $id = ($node->id === null) ? '' : $node->id;
         
         $this->graph->addNode($node, $id);
@@ -166,13 +170,15 @@ class Gml implements FileInput
     protected function parseEdges($linesArray)
     {
         for ($i = 0; $i < count($linesArray); $i++) {
-            if ($linesArray[$i] == "\tedge [") {
-                $this->parseEdge($i, $linesArray);
+            if (strpos($linesArray[$i], "edge [") !== false) {
+                $this->parseEdge($i + 1, $linesArray);
                 continue;
             }
             
-            if ($linesArray[$i] == "\tedge" && $linesArray[$i + 1] == "\t[") {
-                $this->parseEdge($i + 1, $linesArray);
+            if (strpos($linesArray[$i], "edge") !== false
+                && strpos($linesArray[$i + 1], "[") !== false
+            ) {
+                $this->parseEdge($i + 2, $linesArray);
                 continue;
             }
         }
@@ -189,12 +195,12 @@ class Gml implements FileInput
         $edgeAttributes = array();
         
         for ($i = $lineCount; $i < count($linesArray); $i++) {
-            if ($linesArray[$i] == "\t]") {
+            if (strpos($linesArray[$i], "]") !== false) {
                 break;
             }
-
-            $key = trim(substr($linesArray[$i], 0, strpos($linesArray[$i], ' ')));
-            $value = trim(substr($linesArray[$i], strpos($linesArray[$i], ' ') + 1));
+            $thisLine = trim($linesArray[$i]);
+            $key = trim(substr($thisLine, 0, strpos($thisLine, ' ')));
+            $value = trim(substr($thisLine, strpos($thisLine, ' ') + 1));
             
             if (is_numeric($value)) {
                 $value = (int)$value;
@@ -202,7 +208,7 @@ class Gml implements FileInput
             
             $edgeAttributes[$key] = $value;
         }
-        
+
         if (!array_key_exists('source', $edgeAttributes)
             || !array_key_exists('target', $edgeAttributes)) {
             throw new \Exception('missing either source or target for edge');
@@ -218,6 +224,11 @@ class Gml implements FileInput
             $label = $edgeAttributes['label'];
         }
 
-        $this->graph->addEdgeByIds($edgeAttributes['source'], $edgeAttributes['target'], $weight, $label);
+        $this->graph->addEdgeByIds(
+            $edgeAttributes['source'],
+            $edgeAttributes['target'],
+            $weight,
+            $label
+        );
     }
 }
