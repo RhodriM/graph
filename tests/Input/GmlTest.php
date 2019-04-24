@@ -6,6 +6,7 @@ class GmlTest extends \PHPUnit_Framework_TestCase
 {
     protected $gmlGood = 'gmlGood.gml';
     protected $gmlGood2 = 'gmlGood2.gml';
+    protected $gmlGood3 = 'gmlGood3.gml';
     protected $gmlBad1 = 'gmlBad1.gml';
     protected $gmlBad2 = 'gmlBad2.gml';
     protected $gmlIds = 'gmlIds.gml';
@@ -36,6 +37,20 @@ class GmlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, count($graph->getNodes()));
         // 4 edges in undirected graph
         $this->assertEquals(4, count($graph->getEdges()));
+    }
+    
+    public function testReadFromFileGood3()
+    {
+        $gml = new \Graph\Input\Gml();
+        
+        $graph = $gml->readFromFile($this->gmlGood3);
+        
+        $this->assertTrue(is_a($graph, \Graph\GraphContainer::class));
+        $this->assertFalse($graph->isDirected());
+        
+        $this->assertEquals(1, count($graph->getNodes()));
+        // 1 edges in undirected graph
+        $this->assertEquals(2, count($graph->getEdges()));
     }
     
     public function testReadFromFileIdsOrder()
@@ -107,6 +122,22 @@ class GmlTest extends \PHPUnit_Framework_TestCase
             "\t\ttarget 2\n" .
             "\t]\n";
         
+        $gmlStringGood3 = 
+            "graph [\n" .
+            "  node [\n" .
+            "    id 0\n" .
+            "    label \"4,5,0,5,0\"\n" .
+            "  ]\n" .
+            "  node [\n" .
+            "    id 1\n" .
+            "    label \"4,5,0,5,0\"\n" .
+            "  ]\n" .
+            "  edge [\n" .
+            "    source 0\n" .
+            "    target 1\n" .
+            "  ]\n" .
+            "]";
+        
         $gmlStringIDs = 
             "graph [\n" .
             "\tcomment \"This is a sample graph\"\n" .
@@ -148,6 +179,7 @@ class GmlTest extends \PHPUnit_Framework_TestCase
         
         file_put_contents($this->gmlGood, $gmlStringGood);
         file_put_contents($this->gmlGood2, $gmlStringGood2);
+        file_put_contents($this->gmlGood3, $gmlStringGood3);
         file_put_contents($this->gmlBad1, $gmlStringBad1);
         file_put_contents($this->gmlIds, $gmlStringIDs);
     }
@@ -157,6 +189,7 @@ class GmlTest extends \PHPUnit_Framework_TestCase
         
         unlink($this->gmlGood);
         unlink($this->gmlGood2);
+        unlink($this->gmlGood3);
         unlink($this->gmlBad1);
         unlink($this->gmlIds);
     }
