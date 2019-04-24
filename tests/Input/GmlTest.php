@@ -48,11 +48,13 @@ class GmlTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_a($graph, \Graph\GraphContainer::class));
         $this->assertFalse($graph->isDirected());
         
-        $this->assertEquals(1, count($graph->getNodes()));
-        // 1 edges in undirected graph
+        $this->assertEquals(2, count($graph->getNodes()));
+        // 2 edges in undirected graph, 1 each way
         $this->assertEquals(2, count($graph->getEdges()));
+
+        $this->assertEquals("4,5,0,5,0", $graph->getNodes()[0]->label);
     }
-    
+
     public function testReadFromFileIdsOrder()
     {
         $gml = new \Graph\Input\Gml();
