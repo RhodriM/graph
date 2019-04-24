@@ -1,7 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/RhodriM/graph/compare/1.5.0...master)
+## [Unreleased](https://github.com/RhodriM/graph/compare/1.5.1...master)
+
+## [1.5.1](https://github.com/RhodriM/graph/compare/1.5.0...1.5.1) - 2019-04-24
+### Edited
+ - Fixes to GML parser, should better handle GML files written by networkx
 
 ## [1.5.0](https://github.com/RhodriM/graph/compare/1.4.2...1.5.0) - 2018-08-24
 ### Added
