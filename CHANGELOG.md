@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/RhodriM/graph/compare/1.5.1...master)
+### Added
+ - Add Stats class for general network properties
+ - Add BalancedTreeDepth
 
 ## [1.5.1](https://github.com/RhodriM/graph/compare/1.5.0...1.5.1) - 2019-04-24
 ### Edited
