@@ -1,8 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/RhodriM/graph/compare/1.6.0...master)
+## [Unreleased](https://github.com/RhodriM/graph/compare/1.6.1...master)
 ###
+
+## [1.6.1](https://github.com/RhodriM/graph/compare/1.6.0...1.6.1) - 2019-11-12
+### Edited
+ - Fixed reading graph attributes from gml file
 
 ## [1.6.0](https://github.com/RhodriM/graph/compare/1.5.1...1.6.0) - 2019-11-06
 ### Added
