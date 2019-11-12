@@ -1,6 +1,7 @@
 <?php
 
 namespace Graph\Input\Test;
+include 'GmlTestClass.php';
 
 class GmlTest extends \PHPUnit_Framework_TestCase
 {
@@ -186,7 +187,30 @@ class GmlTest extends \PHPUnit_Framework_TestCase
         file_put_contents($this->gmlIds, $gmlStringIDs);
     }
     
-    public function tearDown() {
+    public function testParseGraphAttributes()
+    {
+        $linesArray = array(
+            'graph [',
+            'attribute1 4',
+            '   attribute2 2',
+            ' attribute3 3',
+            '  attribute4     123',
+            '  attribute5   567    '
+        );
+        
+        $gml = new \Graph\Input\Test\GmlTestClass();
+        
+        $graphAttributes = $gml->parseGraphAttributes($linesArray);
+        
+        $this->assertEquals(4, $graphAttributes['attribute1']);
+        $this->assertEquals(2, $graphAttributes['attribute2']);
+        $this->assertEquals(3, $graphAttributes['attribute3']);
+        $this->assertEquals(123, $graphAttributes['attribute4']);
+        $this->assertEquals(567, $graphAttributes['attribute5']);
+    }
+    
+    public function tearDown()
+    {
         parent::tearDown();
         
         unlink($this->gmlGood);

@@ -97,8 +97,10 @@ class Gml implements FileInput
                 continue;
             }
             
-            $key = trim(substr($linesArray[$i], 0, strpos($linesArray[$i], ' ')));
-            $value = trim(substr($linesArray[$i], strpos($linesArray[$i], ' ') + 1));
+            $trimmedLine = trim($linesArray[$i]);
+            
+            $key = trim(substr($trimmedLine, 0, strpos($trimmedLine, ' ')));
+            $value = trim(substr($trimmedLine, strpos($trimmedLine, ' ') + 1));
 
             $graphAttributes[$key] = $value;
         }
