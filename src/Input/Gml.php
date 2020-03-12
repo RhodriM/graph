@@ -205,7 +205,7 @@ class Gml implements FileInput
             $value = trim(substr($thisLine, strpos($thisLine, ' ') + 1));
             
             if (is_numeric($value)) {
-                $value = (int)$value;
+                $value = (float)$value;
             }
             
             $edgeAttributes[$key] = $value;
