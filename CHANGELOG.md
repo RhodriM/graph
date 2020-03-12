@@ -1,8 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/RhodriM/graph/compare/1.6.1...master)
-###
+## [Unreleased](https://github.com/RhodriM/graph/compare/1.6.2...master)
+### Edited
+
+## [1.6.1](https://github.com/RhodriM/graph/compare/1.6.0...1.6.2) - 2020-03-12
+### Edited
+ - Removed phpdocumentor as uses old version of symfony/dependency-injection
+ - Fix to ensure edge properties that are floats are not cast to integers
 
 ## [1.6.1](https://github.com/RhodriM/graph/compare/1.6.0...1.6.1) - 2019-11-12
 ### Edited
